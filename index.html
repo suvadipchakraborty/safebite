@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SafeBite – Instant allergen check</title>
+<meta name="description" content="Search any food and see instantly if it's safe for your allergies.">
+<meta name="theme-color" content="#ffffff">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SafeBite – Instant allergen check">
+<meta property="og:description" content="Set your allergies once. Search any food. Get a clear SAFE or WARNING in seconds.">
+<meta property="og:url" content="https://safebite.suvadipchakraborty.workers.dev/">
+<meta property="og:image" content="https://safebite.suvadipchakraborty.workers.dev/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://safebite.suvadipchakraborty.workers.dev/preview.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2l11 4v9c0 7-5 12-11 15C10 27 5 22 5 15V6z" fill="#E5173F"/><path d="M10.5 16l4 4 7-8" stroke="#fff" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>SafeBite</span></div>
+  <div class="actions">
+    <button id="installBtn" class="chip" hidden>⬇ Save App</button>
+    <button id="shareBtn" class="icon-btn" aria-label="Share SafeBite"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7M16 6l-4-4-4 4M12 2v14"/></svg></button>
+  </div>
+</header>
+
+<main>
+  <section class="banner" aria-live="polite">
+    <p id="bannerText"></p>
+    <button id="editBtn" class="chip dark">Edit Profile</button>
+  </section>
+
+  <h1 class="hero">What are you<br>about to eat?</h1>
+  <form id="searchForm" class="search" role="search">
+    <input id="q" type="search" placeholder="Search for a product or snack..." autocomplete="off" enterkeyhint="search" aria-label="Search for a product">
+    <button class="go" type="submit" aria-label="Search"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
+  </form>
+  <div class="sub">
+    <div id="recents" class="recents"></div>
+    <button id="scanBtn" class="link" hidden>▦ Scan barcode (optional)</button>
+  </div>
+
+  <div id="status" class="status" role="status"></div>
+  <div id="results" class="results"></div>
+</main>
+
+<footer>
+  <p class="disc">Always double-check physical packaging. Data is community-sourced and may not reflect recent recipe changes.</p>
+  <p>Built by Suva · <a href="mailto:suvadipchakraborty@gmail.com?subject=SafeBite%20feedback">Send feedback</a></p>
+  <p class="tiny">Powered by Open Food Facts</p>
+</footer>
+
+<dialog id="profileDlg">
+  <form method="dialog" id="profileForm">
+    <h2>Your allergy profile</h2>
+    <p class="muted">Tap everything you need to avoid. It's saved on this device only.</p>
+    <div id="toggles" class="toggles"></div>
+    <label class="strict"><input type="checkbox" id="strictTraces"> <span><b>Also warn about traces</b><br><small>"May contain" cross-contamination</small></span></label>
+    <button class="primary" value="save">Save profile</button>
+  </form>
+</dialog>
+
+<dialog id="scanDlg">
+  <div class="scan"><video id="video" playsinline muted></video><div class="reticle"></div></div>
+  <p id="scanMsg" class="muted center">Point at a barcode…</p>
+  <button class="primary" id="scanClose" type="button">Close</button>
+</dialog>
+
+<div id="toast" class="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
